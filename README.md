@@ -1,50 +1,36 @@
-# Welcome to your Expo app 👋
+# Vaad — One Good Argument
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Philosophy
 
-## Get started
+Online debate is broken by format, not by people.
 
-1. Install dependencies
+Twitter rewards the most outrageous take, not the most reasoned one. WhatsApp
+groups dissolve into interruptions. YouTube comments are performance, not
+argument. The problem is not that people are wrong — it is that the format
+punishes careful reasoning and rewards noise.
 
-   ```bash
-   npm install
-   ```
+Vaad fixes the format.
 
-2. Start the app
+Two participants. One topic. Timed turns. No interruptions possible — the
+microphone cuts off when your time is up. The debate is transcribed
+automatically and made public. Readers vote on argument quality across four
+dimensions: logic, evidence, engagement, and cross-examination quality.
 
-   ```bash
-   npx expo start
-   ```
+The core belief this app is built on: argument quality and winning are
+different things. A person can win a debate by being louder, more confident,
+or more charming — without making a single good argument. Vaad does not declare
+winners. It measures argument quality and lets you draw your own conclusion.
 
-In the output, you'll find options to open the app in a
+Every design decision in this codebase exists to serve that belief.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## What It Is
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Vaad is structured debate infrastructure. Built for FOSS Hack 2026 by [your name],
+team mama.
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Create a debate with a topic
+- Share a link to invite your opponent (no account required)
+- Four rounds: opening statements, cross-examination, rebuttal, closing
+- Timer enforced hard — microphone cuts off at zero
+- Every turn transcribed automatically via Whisper
+- Readers vote on argument quality, not on who won
