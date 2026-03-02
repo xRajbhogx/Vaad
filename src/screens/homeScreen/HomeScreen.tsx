@@ -1,5 +1,5 @@
 import { router } from 'expo-router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Dimensions,
   FlatList,
@@ -10,9 +10,9 @@ import {
   View
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { styles as makeStyles } from './styles'
+import { styles } from './styles'
+import { supabase } from '@/lib/supabase'
 
-const styles = makeStyles()
 
 const { width } = Dimensions.get('window')
 

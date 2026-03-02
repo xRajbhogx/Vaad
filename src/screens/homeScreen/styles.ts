@@ -3,8 +3,7 @@ import { StyleSheet } from "react-native";
 
 
 
-export const styles =()=>{ 
-    return (StyleSheet.create({
+export const styles = StyleSheet.create({
         safe: {
             flex: 1,
             backgroundColor: darkColors.bg,
@@ -198,4 +197,4 @@ export const styles =()=>{
             backgroundColor: darkColors.scoreDivider,
             marginHorizontal: 8,
         },
-}));}
+})
