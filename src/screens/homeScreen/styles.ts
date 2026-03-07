@@ -108,7 +108,7 @@ export const styles = StyleSheet.create({
             padding: 16,
             marginBottom: 12,
             borderWidth: 1,
-            borderColor: darkColors.debateCardBorder,
+            borderColor: darkColors.textMuted,
         },
         debateCardGlow: {
             backgroundColor: darkColors.debateCardBgGlow,

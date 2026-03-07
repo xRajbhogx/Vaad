@@ -1,34 +1,36 @@
+import { getCurrentUserId } from '@/lib/auth'
+import { supabase } from '@/lib/supabase'
+import type { DebateFormat } from '@/types'
+import { router } from 'expo-router'
 import { useState } from 'react'
 import {
-  View,
+  ActivityIndicator,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StatusBar,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  StatusBar,
-  ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform,
-  Alert,
+  View,
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { router } from 'expo-router'
-import { supabase } from '@/lib/supabase'
-import { getCurrentUserId } from '@/lib/auth'
 import { styles } from './styles'
-import { FontAwesome5, Ionicons } from '@expo/vector-icons';
-import type { DebateFormat } from '@/types'
 
-const FORMATS: { key: DebateFormat; label: string; duration: string }[] = [
-  { key: 'quick', label: 'Quick', duration: '6 min' },
-  { key: 'standard', label: 'Standard', duration: '12 min' },
-  { key: 'deep', label: 'Deep', duration: '20 min' },
+const FORMATS: { key: DebateFormat; label: string; duration: string; rounds: string }[] = [
+  { key: 'quick',    label: 'Quick',    duration: '6 minutes',  rounds: '4 rounds' },
+  { key: 'standard', label: 'Standard', duration: '12 minutes', rounds: '4 rounds' },
+  { key: 'deep',     label: 'Deep',     duration: '20 minutes', rounds: '4 rounds' },
 ]
+
+const TOPIC_CHIPS = ['College', 'Work', 'Society', 'Tech', 'Culture', 'Random']
 
 export default function CreateDebateScreen() {
   const [topic, setTopic] = useState('')
   const [name, setName] = useState('')
   const [format, setFormat] = useState<DebateFormat>('standard')
+  const [selectedChip, setSelectedChip] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
   async function handleCreate() {
@@ -117,72 +119,80 @@ export default function CreateDebateScreen() {
         style={styles.flex}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <View style={styles.container}>
-
-          {/* Header */}
-          <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-            <FontAwesome5 name="long-arrow-alt-left" size={24} color="white" />
-          </TouchableOpacity>
-
-          <Text style={styles.heading}>New Debate</Text>
-          <View style={styles.headingUnderline} />
-
-          {/* Your name */}
-          <Text style={styles.label}>Your name</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="What should we call you?"
-            placeholderTextColor="#4A5568"
-            value={name}
-            onChangeText={setName}
-            maxLength={40}
-          />
+        <ScrollView
+          style={styles.scroll}
+          contentContainerStyle={styles.container}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
+          {/* Nav */}
+          <View style={styles.nav}>
+            <TouchableOpacity onPress={() => router.back()} style={styles.backBtn} activeOpacity={0.7}>
+              <Text style={styles.backArrow}>←</Text>
+            </TouchableOpacity>
+            <Text style={styles.screenTitle}>New Debate</Text>
+          </View>
 
           {/* Topic */}
-          <Text style={styles.label}>Topic</Text>
+          <Text style={styles.fieldLabel}>Topic</Text>
           <TextInput
-            style={[styles.input, styles.topicInput]}
-            placeholder="State a clear, debatable position..."
-            placeholderTextColor="#4A5568"
+            style={styles.textInput}
+            placeholder="What are you debating?"
+            placeholderTextColor="rgba(240,237,232,0.25)"
             value={topic}
             onChangeText={setTopic}
             multiline
             maxLength={200}
           />
-          <Text style={styles.charCount}>{topic.length}/200</Text>
 
-          {/* Format selector */}
-          <Text style={styles.label}>Format</Text>
-          <View style={styles.formatRow}>
-            {FORMATS.map((f) => (
+          {/* Chips */}
+          <Text style={styles.fieldLabel}>Or pick one</Text>
+          <View style={styles.chipsRow}>
+            {TOPIC_CHIPS.map((chip) => (
               <TouchableOpacity
-                key={f.key}
-                style={[
-                  styles.formatButton,
-                  format === f.key && styles.formatButtonActive,
-                ]}
-                onPress={() => setFormat(f.key)}
-                activeOpacity={0.8}
+                key={chip}
+                style={[styles.chip, selectedChip === chip && styles.chipActive]}
+                onPress={() => setSelectedChip(selectedChip === chip ? null : chip)}
+                activeOpacity={0.7}
               >
-                <Text
-                  style={[
-                    styles.formatLabel,
-                    format === f.key && styles.formatLabelActive,
-                  ]}
-                >
-                  {f.label}
-                </Text>
-                <Text
-                  style={[
-                    styles.formatDuration,
-                    format === f.key && styles.formatDurationActive,
-                  ]}
-                >
-                  {f.duration}
+                <Text style={[styles.chipText, selectedChip === chip && styles.chipTextActive]}>
+                  {chip}
                 </Text>
               </TouchableOpacity>
             ))}
           </View>
+
+          {/* Format */}
+          <Text style={styles.fieldLabel}>Format</Text>
+          <View style={styles.formatOptions}>
+            {FORMATS.map((f) => (
+              <TouchableOpacity
+                key={f.key}
+                style={[styles.formatOption, format === f.key && styles.formatOptionSelected]}
+                onPress={() => setFormat(f.key)}
+                activeOpacity={0.7}
+              >
+                <View style={[styles.radioDot, format === f.key && styles.radioDotSelected]}>
+                  {format === f.key && <View style={styles.radioDotInner} />}
+                </View>
+                <View style={styles.formatText}>
+                  <Text style={styles.formatName}>{f.label}</Text>
+                  <Text style={styles.formatDurationText}>{f.duration} · {f.rounds}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {/* Your Name */}
+          <Text style={styles.fieldLabel}>Your Name</Text>
+          <TextInput
+            style={[styles.textInput, styles.nameInput]}
+            placeholder="What should we call you?"
+            placeholderTextColor="rgba(240,237,232,0.25)"
+            value={name}
+            onChangeText={setName}
+            maxLength={40}
+          />
 
           {/* Create button */}
           <TouchableOpacity
@@ -194,11 +204,11 @@ export default function CreateDebateScreen() {
             {loading ? (
               <ActivityIndicator color="#0D1117" />
             ) : (
-              <Text style={styles.createButtonText}>Create Debate</Text>
+              <Text style={styles.createButtonText}>Create & Share Link</Text>
             )}
           </TouchableOpacity>
 
-        </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   )
