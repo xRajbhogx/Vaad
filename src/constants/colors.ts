@@ -1,107 +1,23 @@
-export const darkColors = {
-    bg: '#0D1117',
-
-    wordMark: '#F5A623',
-    textMuted: '#8B949E',
-    inputText:'#373839ff',
-
-    button: '#F5A623',
-    buttonGlow: "#ffb846ff",
-    buttonText: '#0D1117',
-    divider: '#21262D',
-
-    debateCardBg: '#161b22ff',
-    debateCardBgGlow: '#171e28ff',
-    debateCardBorder: '#f8ad35ff',
-    debateCardLeftBorder: '#f8ad35ff',
-    debateCardLeftBorderGlow: '#F5A623',
-    cardTopic: '#E6EDF3',
-
-    scoreDivider: '#21262D',
-    scoreText: '#ff9d00ff',
-
-    selectedFormatBackground:'#302518ff',
-    selectedFormatBorder:'#f4a51cff'
-}
-
-// export const darkColors = {
-//   // Backgrounds
-//   bg: '#0D1117',
-//   surface: '#161B22',
-//   surfaceRaised: '#1C2128',
-
-//   // Text
-//   wordMark: '#F5A623',
-//   textPrimary: '#E6EDF3',
-//   textMuted: '#8B949E',
-//   textFaint: '#4A5568',
-//   inputText: '#E6EDF3',
-
-//   // Accent
-//   accent: '#F5A623',
-//   accentGlow: '#FFB846',
-//   accentDim: '#CC8800',
-
-//   // Buttons
-//   button: '#F5A623',
-//   buttonText: '#0D1117',
-
-//   // Borders & Dividers
-//   border: '#21262D',
-//   divider: '#21262D',
-
-//   // Cards
-//   debateCardBg: '#161B22',
-//   debateCardBorder: '#21262D',
-//   debateCardLeftBorder: '#F5A623',
-
-//   // Scores
-//   scoreText: '#F5A623',
-//   scoreDivider: '#21262D',
-
-//   // Format selector
-//   selectedFormatBackground: '#302518',
-//   selectedFormatBorder: '#F5A623',
-// }
-
-// export const lightColors = {
-//   // Backgrounds
-//   bg: '#F6F8FA',
-//   surface: '#FFFFFF',
-//   surfaceRaised: '#EAEEF2',
-
-//   // Text
-//   wordMark: '#C47D0E',
-//   textPrimary: '#1A1E24',
-//   textMuted: '#57606A',
-//   textFaint: '#A0AAB4',
-//   inputText: '#1A1E24',
-
-//   // Accent
-//   accent: '#C47D0E',
-//   accentGlow: '#E09520',
-//   accentDim: '#A06808',
-
-//   // Buttons
-//   button: '#C47D0E',
-//   buttonText: '#FFFFFF',
-
-//   // Borders & Dividers
-//   border: '#D0D7DE',
-//   divider: '#D0D7DE',
-
-//   // Cards
-//   debateCardBg: '#FFFFFF',
-//   debateCardBorder: '#D0D7DE',
-//   debateCardLeftBorder: '#C47D0E',
-
-//   // Scores
-//   scoreText: '#C47D0E',
-//   scoreDivider: '#D0D7DE',
-
-//   // Format selector
-//   selectedFormatBackground: '#FFF3DC',
-//   selectedFormatBorder: '#C47D0E',
-// }
-
-// export type AppColors = typeof darkColors
+export const colors = {
+  bg: "#111110",
+  card: "#1c1c1a",
+  cardBorder: "#2a2a27",
+  coral: "#e8533a",
+  coralLight: "#f0654e",
+  coralDim: "rgba(232,83,58,0.15)",
+  teal: "#2a6e5e",
+  tealLight: "#3d9e88",
+  tealDim: "rgba(42,110,94,0.18)",
+  textPrimary: "#f0ede6",
+  textSecondary: "#a09c92",
+  textMuted: "#6b6760",
+  link: "#c0a87a",
+  badgeBg: "#2b1f1a",
+  badgeText: "#e8533a",
+  mootBg: "#1e2a28",
+  mootText: "#5ab89e",
+  feedbackBg: "#182420",
+  feedbackBorder: "#2a4a3e",
+  feedbackText: "#7ecdb5",
+  white: "#ffffff",
+};

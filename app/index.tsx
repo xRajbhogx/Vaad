@@ -1,6 +1,3 @@
-import HomeScreen from '@/src/screens/homeScreen/HomeScreen'
+import OnboardScreen from "@/src/screens/onboardScreen/OnboardScreen"
 
-
-
-
-export default HomeScreen
+export default OnboardScreen

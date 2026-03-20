@@ -1,33 +1,20 @@
-import { ensureSession } from '@/lib/auth'
 import { Stack } from 'expo-router'
-import React, { useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
+import React from 'react'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { ClerkProvider } from '@clerk/expo'
+import { tokenCache } from '@clerk/expo/token-cache'
 
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!
 
 export default function RootLayout() {
-  const [ready, setReady] = React.useState(false)
-
-  useEffect(() => {
-    async function init() {
-      try {
-        await ensureSession()
-      } catch (err) {
-        console.error(err)
-      } finally {
-        setReady(true)
-      }
-    }
-    init()
-  }, [])
-
-  if (!ready) return null
-
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        contentStyle: { backgroundColor: '#0D1117' },
-      }}
-    />
+
+      <SafeAreaProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="(auth)" />  
+          <Stack.Screen name="(tabs)" />  
+        </Stack>
+      </SafeAreaProvider>
   )
 }
